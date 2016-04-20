@@ -1149,7 +1149,7 @@ define(["sap/designstudio/sdk/component", "d3", "css!../css/component.css"], fun
 			if (me._useMeasures == true){
 				//Firstly, ensure that we can turn in a clockwise manner to get from startAngleDeg to endAngleDegMax
 				while (me._endAngleDeg < me._startAngleDeg){
-					me._endAngleDegMax = me.me._endAngleDegMax + 360.0;
+					me._endAngleDegMax = me._endAngleDegMax + 360.0;
 				}
 				
 				var currEnd = 0.0;
@@ -1183,7 +1183,9 @@ define(["sap/designstudio/sdk/component", "d3", "css!../css/component.css"], fun
 				
 				//Ensure that endAngleDeg falls within the range from startAngleDeg to endAngleDegMax
 				while (me._endAngleDeg > me._endAngleDegMax){
-					me._endAngleDegMax = me._endAngleDegMax + 360.0;
+					//endAngleDeg not allowed to be greater then endAngleDegMax
+					me.endAngleDeg(me._endAngleDegMax);
+					//me._endAngleDegMax = me._endAngleDegMax + 360.0;
 				}
 			}
 		};
