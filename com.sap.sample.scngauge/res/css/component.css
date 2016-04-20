@@ -1,0 +1,14 @@
+.measure {
+	fill: black;
+	font-weight: bold;
+	font-family: Helvetica;
+	font-size: 1.5em;
+}
+
+
+.guide {
+	fill: #808080;
+	font-weight: bold;
+	font-family: Helvetica;
+	font-size: 1em;
+}

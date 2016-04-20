@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension 
+	eula="" 
+	id="com.sap.sample.scngauge" 
+	title="SCN Tutorial Gauge" 
+	vendor="SAP" 
+	version="15.1" 
+	xmlns="http://www.sap.com/bi/zen/sdk" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
+  <license>license</license>
+  <group
+	id="SCNGaugeDataSettings"
+	title="Data"
+	tooltip="Gauge Data Settings"/>
+  <group
+	id="SCNGaugeAngleSettings"
+	title="Gauge Arc"
+	tooltip="Gauge Angle Settings"/>
+  <group
+	id="SCNGaugeLineSettings"
+	title="Guide Lines"
+	tooltip="Guide Line Ring and Line Settings"/>
+  <group
+	id="SCNGaugeNeedleSettings"
+	title="Indicator Needle"
+	tooltip="Gauge Indicator Needle Settings"/>
+  <group
+	id="SCNGaugeTickMarkSettings"
+	title="Tickmarks"
+	tooltip="Gauge Tickmark Settings"/>
+  <group
+	id="SCNGaugeAnimationSettings"
+	title="Animations"
+	tooltip="Animation Settings"/>
+  <group
+	id="SCNGaugeTextCallouts"
+	title="Text Callouts"
+	tooltip="Text Calloutss"/>
+  <component 
+  	databound="false" 
+  	group="" 
+  	handlerType="div" 
+  	icon="res/gauge.png" 
+  	id="SCNGauge" 
+  	propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html" 
+  	title="Gauge" 
+  	tooltip="" 
+  	visible="true"
+  	modes="commons m">
+    <!--  <stdInclude kind="d3"/>
+    <jsInclude>res/js/component.js</jsInclude>
+	<cssInclude>res/css/component.css</cssInclude>-->
+	<requireJs modes="commons m">res/js/component</requireJs>
+
+	<property
+		id="enableArc"
+		title="Enable Gauge Arc"
+		type="boolean"
+		group="SCNGaugeAngleSettings"/>	
+	<property
+		id="startAngleDeg"
+		title="Start Angle"
+		type="float"
+		bindable="true"
+		group="SCNGaugeAngleSettings"/>
+	<property
+		id="endAngleDeg"
+		title="End Angle"
+		type="float"
+		bindable="true"
+		group="SCNGaugeAngleSettings"/>
+	<property
+		id="endAngleDegMax"
+		title="End Angle Max"
+		type="float"
+		bindable="true"
+		group="SCNGaugeAngleSettings"/>
+	<property
+		id="innerRad"
+		title="Inner Radius"
+		type="float"
+		bindable="true"/>
+	<property
+		id="outerRad"
+		title="Outer Radius"
+		type="float"
+		visible="false"/>
+	<property
+		id="offsetLeft"
+		title="Centerpoint Offset X-Axis"
+		type="int"		
+		visible="false"/>
+	<property
+		id="offsetDown"
+		title="Centerpoint Offset Y-Axis"
+		type="int"
+		visible="false"/>
+	<property
+		id="paddingTop"
+		title="Top Padding"
+		type="int"/>
+	<property
+		id="paddingBottom"
+		title="Bottom Padding"
+		type="int"/>
+	<property
+		id="paddingLeft"
+		title="Left Padding"
+		type="int"/>
+	<property
+		id="paddingRight"
+		title="Right Padding"
+		type="int"/>
+
+		
+	<property
+		id="colorCode"
+		title="Default Color"
+		type="Color"
+		bindable="true"
+		group="SCNGaugeAngleSettings"/>
+	<property
+		id="gaugeOpacity"
+		title="Opacity"
+		type="float"
+		group="SCNGaugeAngleSettings"/>
+		
+	<property id="colorArray" type="Array" title="Conditional Formatting" group="SCNGaugeAngleSettings">
+	 	<property id="conditionalFormat" type="Object" title="Conditional Format">
+	   		<property id="threshold" type="int" title="Measure Threshold" />
+	  		<property id="colorID" type="Color" title="Color Code" />
+	  	</property>
+	</property>
+	
+	<property
+		id="useMeasures"
+		title="Use Measures"
+		type="boolean"
+		group="SCNGaugeDataSettings"/>
+	<property
+		id="measureMax"
+		title="Measure Max Value"
+		type="int"
+		bindable="true"
+		group="SCNGaugeDataSettings"/>
+	<property
+		id="measureMin"
+		title="Measure Min Value"
+		type="int"
+		bindable="true"
+		group="SCNGaugeDataSettings"/>
+	<property
+		id="measureVal"
+		title="Measure"
+		type="int"
+		bindable="true"
+		group="SCNGaugeDataSettings"/>
+		
+		
+	<!-- Part 8 -->
+	<property id="enableGuideLines" title="Enable Guide Lines" type="boolean" group="SCNGaugeLineSettings"/>
+	<property id="guideColorCode" title="Guide Line Color" type="Color" group="SCNGaugeLineSettings"/>
+	<property id="guideOpacity" title="Guide Opacity" type="float" group="SCNGaugeLineSettings"/>
+	<property id="bracketThickness" title="Guide Line Thickness" type="int" group="SCNGaugeLineSettings"/>
+	<property id="enableGuideRing" title="Enable Guide Ring" type="boolean" group="SCNGaugeLineSettings"/>
+	<property id="ringColorCode" title="Guide Ring Color" type="Color" group="SCNGaugeLineSettings"/>
+	<property id="ringThickness" title="Guide Ring Thickness" type="int" group="SCNGaugeLineSettings"/>
+	
+	<!-- Part 9 -->
+	<property id="enableIndicatorNeedle" title="Enable Indicator Needle" type="boolean" group="SCNGaugeNeedleSettings"/>
+	<property id="enableIndicatorNeedleTail" 
+		title="Enable Indicator Needle Tail" 
+		type="boolean" 
+		tooltip="Enable the tail on the the indicator needle and make it a diamond"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="fillNeedle" 
+		title="Fill Indicator Needle" 
+		type="boolean" 
+		tooltip="Enable color fill on the indicator needle"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="needleColorCode" 
+		title="Needle Color" 
+		type="Color" 
+		tooltip="Needle Color (outline and fill of indicator needle and base pin)"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="needleWidth" 
+		title="Indicator Needle Width" 
+		type="int" 
+		tooltip="Base width of the indicator needle, as a percentage of the gauge radius"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="needleHeadLength" 
+		title="Indicator Needle Length" 
+		type="int" 
+		tooltip="Length of the indicator needle, as a percentage of the gauge radius"
+		group="SCNGaugeNeedleSettings">
+		<!-- <possibleValue>1</possibleValue>  -->
+	</property>
+	<property id="needleTailLength" 
+		title="Indicator Needle Tail Length" 
+		type="int" 
+		tooltip="Tail Length of the indicator needle, as a percentage of the gauge radius"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="needleLineThickness" 
+		title="Indicator Line Thickness" 
+		type="int" 
+		tooltip="Thickness of the lines used to draw the indicator needle and base pin"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="enableIndicatorNeedleBase" 
+		title="Enable Base Pin" 
+		type="boolean" 
+		tooltip="Enable the base pin (circle) on the indicator needle"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="fullBasePinRing" 
+		title="360° Base Pin" 
+		type="boolean" 
+		tooltip="Enable a full 360 degree base pin circle.  Disabling this results in a 180 degree arc on the needle tail"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="fillNeedlaBasePin" 
+		title="Fill Base Pin" 
+		type="boolean" 
+		tooltip="Fill the base pin, with the indicator needle fill color"
+		group="SCNGaugeNeedleSettings"/>
+	<property id="needleBaseWidth" 
+		title="Base Pin Width" 
+		type="int" 
+		tooltip="Diameter (as a % of main arc radius) of the base pin"
+		group="SCNGaugeNeedleSettings"/>
+		
+		
+	<!-- Part 10 -->
+	<property id="animationEnable" 
+		title="Enable Animations" 
+		type="boolean" 
+		tooltip="Are the gauge arc and needle animated?"
+		group="SCNGaugeAnimationSettings"/>
+	<property id="animationDelay" 
+		title="Animation Delay" 
+		type="int" 
+		tooltip="Delay time (in miliseconds), before the animation starts"
+		group="SCNGaugeAnimationSettings"/>
+	<property id="animationDuration" 
+		title="Animation Duration" 
+		type="int" 
+		tooltip="Duration time (in miliseconds) of the animation.  Includes dampening oscillation time if ease type is elastic."
+		group="SCNGaugeAnimationSettings"/>
+	<property id="animationEase" 
+		title="Ease Type" 
+		type="String" 
+		tooltip="Delay time (in miliseconds), before the animation starts"
+		group="SCNGaugeAnimationSettings">
+		<possibleValue>linear</possibleValue>
+		<possibleValue>quad</possibleValue>
+		<possibleValue>cubic</possibleValue>
+		<possibleValue>sin</possibleValue>
+		<possibleValue>exp</possibleValue>
+		<possibleValue>circle</possibleValue>
+		<possibleValue>elastic</possibleValue>
+		<possibleValue>back</possibleValue>
+		<possibleValue>bounce</possibleValue>
+	</property>
+	<property id="animationEnableOpacity" 
+		title="Enable Opacity Fade" 
+		type="boolean" 
+		tooltip="Enable Animated Opacity Fade?"
+		group="SCNGaugeAnimationSettings"/>
+	<property id="animationDelayOpacity" 
+		title="Opacity Fade Delay" 
+		type="int" 
+		tooltip="Delay time (in miliseconds), before the opacity fade starts starts"
+		group="SCNGaugeAnimationSettings"/>
+	<property id="animationDurationOpacity" 
+		title="Opacity Fade Duration" 
+		type="int" 
+		tooltip="Duration time (in miliseconds) of opacity fade."
+		group="SCNGaugeAnimationSettings"/>
+		
+	<!-- Part 11 -->
+	<property id="drawMeasureText" 
+		title="Enable Measure Text" 
+		type="boolean" 
+		tooltip="Enable in-component measure value display?"
+		group="SCNGaugeTextCallouts"/>
+	<property id="measureTextPositionType" 
+		title="Measure Text Position Type" 
+		type="String" 
+		tooltip="Position of the measure text value"
+		group="SCNGaugeTextCallouts">
+		<possibleValue>endpoint</possibleValue>
+		<possibleValue>upperCentral</possibleValue>
+		<possibleValue>upperIdeographic</possibleValue>
+		<possibleValue>lowerIdeographic</possibleValue>
+		<possibleValue>lowerCentral</possibleValue>
+		<possibleValue>bottom</possibleValue>
+	</property>	
+	<property id="measureTextCSSClass" 
+		title="Measure Text Class" 
+		type="String" 
+		tooltip="CSS class of the measure text (overrides component CSS class.  Default value is 'measure')"
+		group="SCNGaugeTextCallouts">
+	</property>
+	<property id="drawGuideText" 
+		title="Enable Guide Text" 
+		type="boolean" 
+		tooltip="Enable in-component guide line value display (guide lines don't need to be enabled to show the text)?"
+		group="SCNGaugeTextCallouts"/>
+	<property id="guidePositioning" 
+		title="Guide Text Position Type" 
+		type="String" 
+		tooltip="Position of the guide text value, along the guide axis (middle or end)"
+		group="SCNGaugeTextCallouts">
+		<possibleValue>end</possibleValue>
+		<possibleValue>middle</possibleValue>
+	</property>
+	<property id="guideTextCSSClass" 
+		title="Guide Text Class" 
+		type="String" 
+		tooltip="CSS class of the guide text (overrides component CSS class.  Default value is 'guide')"
+		group="SCNGaugeTextCallouts">
+	</property>
+	
+	<!-- Part 14 -->
+	<property id="enableTickMarks" 
+		title="Enable Tick Marks" 
+		type="boolean" 
+		tooltip="Enable the tick marks along the guide ring arc"
+		group="SCNGaugeTickMarkSettings"/>
+	<property id="tickMarkCount" 
+		title="Tick Mark Count" 
+		type="int" 
+		tooltip="Number of Tickmarks (including at start and end guide positions).  Will only be displayed if this value is at least one"
+		group="SCNGaugeTickMarkSettings"/>
+	<property id="outsideTickLength" 
+		title="Outside Tick Length" 
+		type="int" 
+		tooltip="Outside tick length, as a percentage of gauge radius (10 = 10% of the outer gauge radius)"
+		group="SCNGaugeTickMarkSettings"/>
+	<property id="insideTickLength" 
+		title="Inside Tick Length" 
+		type="int" 
+		tooltip="Outside tick length, as a percentage of gauge radius (10 = 10% of the outer gauge radius)"
+		group="SCNGaugeTickMarkSettings"/>
+
+		
+	<initialization>
+		<defaultValue property="WIDTH">200</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		<defaultValue property="enableArc">true</defaultValue>
+		<defaultValue property="startAngleDeg">-90.0</defaultValue>
+		<defaultValue property="endAngleDeg">90.0</defaultValue>
+		<defaultValue property="useMeasures">false</defaultValue>
+		<defaultValue property="endAngleDegMax">90.0</defaultValue>
+		<defaultValue property="colorCode">blue</defaultValue>
+		<defaultValue property="gaugeOpacity">1.0</defaultValue>
+		<defaultValue property="colorArray"></defaultValue>
+        <defaultValue property="arrayExample"></defaultValue>
+        
+        <defaultValue property="enableGuideLines">false</defaultValue>
+        <defaultValue property="guideColorCode">blue</defaultValue>
+        <defaultValue property="guideOpacity">1.0</defaultValue>
+        <defaultValue property="bracketThickness">2</defaultValue>
+        <defaultValue property="enableGuideRing">false</defaultValue>
+        <defaultValue property="ringColorCode">blue</defaultValue>
+        <defaultValue property="ringThickness">2</defaultValue>
+        
+        <defaultValue property="enableIndicatorNeedle">false</defaultValue>
+        <defaultValue property="enableIndicatorNeedleTail">false</defaultValue>
+        <defaultValue property="fillNeedle">false</defaultValue>
+        <defaultValue property="needleColorCode">black</defaultValue>
+        <defaultValue property="needleWidth">10</defaultValue>
+        <defaultValue property="needleHeadLength">100</defaultValue>
+        <defaultValue property="needleTailLength">10</defaultValue>
+        <defaultValue property="needleLineThickness">2</defaultValue>
+        <defaultValue property="enableIndicatorNeedleBase">false</defaultValue>
+        <defaultValue property="fullBasePinRing">false</defaultValue>
+        <defaultValue property="fillNeedlaBasePin">false</defaultValue>
+        <defaultValue property="needleBaseWidth">20</defaultValue>
+        
+         <defaultValue property="animationEnable">false</defaultValue>
+         <defaultValue property="animationDelay">500</defaultValue>
+         <defaultValue property="animationDuration">1000</defaultValue>
+         <defaultValue property="animationEase">linear</defaultValue>
+         <defaultValue property="animationEnableOpacity">false</defaultValue>
+         <defaultValue property="animationDelayOpacity">500</defaultValue>
+         <defaultValue property="animationDurationOpacity">500</defaultValue>
+         
+         <defaultValue property="drawMeasureText">false</defaultValue>
+         <defaultValue property="measureTextPositionType">upperCentral</defaultValue>
+         <defaultValue property="drawGuideText">false</defaultValue>
+         <defaultValue property="guidePositioning">end</defaultValue>
+         
+         <defaultValue property="measureTextCSSClass">measure</defaultValue>
+         <defaultValue property="guideTextCSSClass">guide</defaultValue>
+         
+         <defaultValue property="enableTickMarks">false</defaultValue>
+         <defaultValue property="tickMarkCount">11</defaultValue>
+         <defaultValue property="outsideTickLength">2</defaultValue>
+         <defaultValue property="insideTickLength">5</defaultValue>
+	</initialization>	
+  </component>
+</sdkExtension>
